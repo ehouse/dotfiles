@@ -1,0 +1,192 @@
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'kevinw/pyflakes-vim'
+Bundle 'majutsushi/tagbar'
+
+set nocompatible
+filetype off  " required!
+filetype plugin off
+
+filetype plugin indent on     " required!
+
+set background=dark
+colorscheme desert
+
+"Map , as the leader key
+let mapleader = ","
+
+" Filetype templates
+autocmd! BufNewFile * silent! 0r ~/.vim/skel/template.%:e
+
+""""""Die, Error bells
+set noerrorbells
+
+syntax on
+syntax sync fromstart
+
+""""""Visual
+set number
+set showmode
+set wrap
+set wrapmargin=8000
+set background=dark
+set ruler
+set backspace=start,indent,eol
+set showmatch       " Briefly jump to a paren once it's balanced
+set matchtime=2     " Do so for exactly 2 seconds
+set scrolloff=5 "Keep the cursor at least 5 lines from the top and bottom
+
+""""""Buffer management
+" Use +/- to change window height
+" Use * and / to change width
+if bufwinnr(1)
+	map <kPlus> <C-W>+
+	map <kMinus> <C-W>-
+	map <kDivide> <c-w><
+	map <kMultiply> <c-w>>
+endif
+" Maps Alt-[h,j,k,l] to resizing a window split
+" map <silent> <A-h> <C-w><
+" map <silent> <A-j> <C-W>-
+" map <silent> <A-k> <C-W>+
+" map <silent> <A-l> <C-w>>
+" map <silent> <A-s> :split<CR>
+" map <silent> <A-v> :vsplit<CR>
+
+""""""Indentation
+set shiftwidth=3
+set tabstop=3
+set listchars=tab:>-,trail:-,eol:$,nbsp:%
+set list
+" This turns indentation into just 'start at the same as previoius line'
+"set autoindent
+"set nosmartindent
+"set nocindent
+" Convert file between spaces and tabs
+map <leader>t :%s/    /\t/gg<CR>
+map <leader>T :%s/\t/    /gg<CR>
+
+""""""Terminal
+set showcmd
+set laststatus=2
+"fancy status bar
+set report=0        " Show number of lines changed by : commands
+set ch=1 "Set height of command line
+"levels of undo
+set history=1000
+set undolevels=1000
+
+" Function to return current directory for status line
+function! CurDir()
+	let curdir = substitute(getcwd(), '/home/ryansb/', "~/", "g")
+		return curdir
+	endfunction
+
+"Search things
+nmap <silent> ,/ :nohlsearch<CR> 
+set hlsearch
+set gdefault
+set incsearch
+"ignore search case with all lowercase, use case when all uppercase
+set ignorecase
+set smartcase
+
+""""""Encoding
+set encoding=utf-8  " Set file encoding
+set termencoding=utf-8
+
+"Backups are for pussies. Save often. Use version control.
+"Don't be a pussy. 
+set nobackup
+set noswapfile
+set noautowrite      " When I want to write to a file, I'll say so
+set noautowriteall 
+set autoread         "Re-read open files when they are changed outside Vim
+
+"""""FileType specific settings
+" Autocomplete
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType perl set omnifunc=perlcomplete#CompletePerl
+
+" Python stuff
+let python_highlight_all=1
+
+" Highlight whitespace
+highlight BadWhitespace ctermbg=red guibg=red
+" Display tabs at the beginning of a line in Python mode as bad.
+au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
+" Make trailing whitespace be flagged as bad.
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+" Map ; to : for great pythonic justice
+"autocmd FileType python inoremap ; :
+"autocmd FileType python inoremap : ;
+
+
+"""""XML stuff
+autocmd FileType xml,xslt,html,css set ts=2 shiftwidth=2 expandtab
+map <Leader>x :%!tidy -utf8 -xml -i -q -w 0<CR>
+
+""""""Keybindings
+" Map ; to : in normal mode for mega-easy vim commands. 
+"nnoremap ; :
+
+" Map a quick way to save the current session
+nmap <Leader>s :mksession session.vim<CR>
+
+"let jj get you out of insert mode
+inoremap jj <ESC>
+
+" Let Y yank to end of line like C and D
+nnoremap Y y$
+
+"w!! writes the file using sudo
+cmap w!! w !sudo tee % >/dev/null
+
+" Word swapping
+nmap <silent> gw "_yiw:s/\(\%#\w\+\)\(\W\+\)\(\w\+\)/\3\2\1/<cr><c-o><c-l>
+
+" Character swapping
+nmap <silent> gc xph
+
+" tabs
+" create a new tab
+map :tc :tabnew %<cr>
+" close a tab
+map :td :tabclose<cr>
+
+"let me add newlines by hitting enter in normal mode
+nmap <CR> o<ESC>
+
+"Insert timestamp on next line
+map <F5> :r!date<CR>
+
+"Bindings for all of the validators
+nnoremap :p8 :!pep8 %<CR>
+nnoremap :pyl :!pylint -d W,E -r n %<CR>
+nnoremap :pyr :!pylint -d W,E -r y %<CR>
+nnoremap :pyf :!pyflakes %<CR>
+nnoremap :pf :PyflakesUpdate<CR>
+
+"go vertical even with line wraps and don't jump
+"noremap j gj
+"noremap k gk
+
+" Mappings to jump me to the beginning of functions
+" Cred to Globe for these ones
+map [[ ?{<CR>w99[{
+map ][ /}<CR>b99]}
+map ]] j0[[%/{<CR>
+map [] k$][%?}<CR>
+
+" take you out of insert mode after being inactive for a while
+" au CursorHoldI * stopinsert
+
+" Toggle paste/nopaste
+map <Leader>ip :set invpaste invnumber invlist<CR>
+
+" Tagbar crap
+let g:tagbar_usearrows = 1
+nmap <F8> :TagbarToggle<CR>

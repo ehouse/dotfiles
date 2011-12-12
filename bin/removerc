@@ -1,0 +1,5 @@
+#!/bin/bash
+rm ~/.vimrc -rf
+rm ~/.vim -rf
+rm ~/.zshrc -rf
+rm ~/.zsh -rf
