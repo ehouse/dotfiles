@@ -78,6 +78,7 @@ set ch=1 "Set height of command line
 set history=1000
 set undolevels=1000
 
+set nofoldenable
 
 "Search things
 nmap <silent> ,/ :nohlsearch<CR> 

@@ -4,3 +4,8 @@ ln -s ~/dotfiles/vim ~/.vim
 ln -s ~/dotfiles/vim/vimrc ~/.vimrc
 ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
 ln -s ~/dotfiles/zsh ~/.zsh
+rm ~/.vim/bundle/* -rf
+git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+rm ~/dotfiles/zsh/zsh-syntax-highlighting/ -rf
+git clone git://github.com/zsh-users/zsh-syntax-highlighting.git ~/dotfiles/zsh/zsh-syntax-highlighting
+ln -s ~/dotfiles/zsh/zsh-syntax-highlighting/ ~/.zsh-syntax-highlighting
