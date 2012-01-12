@@ -2,7 +2,6 @@ set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-Bundle 'kevinw/pyflakes-vim'
 Bundle 'majutsushi/tagbar'
 
 set nocompatible
@@ -163,8 +162,6 @@ map <F5> :r!date<CR>
 nnoremap :p8 :!pep8 %<CR>
 nnoremap :pyl :!pylint -d W,E -r n %<CR>
 nnoremap :pyr :!pylint -d W,E -r y %<CR>
-nnoremap :pyf :!pyflakes %<CR>
-nnoremap :pf :PyflakesUpdate<CR>
 
 "go vertical even with line wraps and don't jump
 "noremap j gj
