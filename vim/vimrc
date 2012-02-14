@@ -146,6 +146,9 @@ nmap <silent> gw "_yiw:s/\(\%#\w\+\)\(\W\+\)\(\w\+\)/\3\2\1/<cr><c-o><c-l>
 " Character swapping
 nmap <silent> gc xph
 
+" hit escape to remove search highlighting 
+nnoremap <esc> :noh<return><esc>
+
 " tabs
 " create a new tab
 map :tc :tabnew %<cr>
