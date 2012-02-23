@@ -70,7 +70,7 @@ set list
 map <leader>t :%s/    /\t/gg<CR>
 map <leader>T :%s/\t/    /gg<CR>
 
-""""""Terminal
+"""""Terminal
 set showcmd
 set laststatus=2
 "fancy status bar
@@ -123,8 +123,8 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 
 """""XML stuff
-autocmd FileType xml,xslt,html,css set ts=2 shiftwidth=2 expandtab
-map <Leader>x :%!tidy -utf8 -xml -i -q -w 0<CR>
+"autocmd FileType xml,xslt,html,css set ts=2 shiftwidth=2 expandtab
+"map <Leader>x :%!tidy -utf8 -xml -i -q -w 0<CR>
 
 """"""Keybindings
 " Map ; to : in normal mode for mega-easy vim commands. 
@@ -149,7 +149,7 @@ cmap w!! w !sudo tee % >/dev/null
 " nmap <silent> gc xph
 
 " hit escape to remove search highlighting 
-nnoremap <esc> :noh<return><esc>
+"nnoremap <esc> :noh<return><esc>
 
 " tabs
 " create a new tab
@@ -163,10 +163,10 @@ nmap <CR> o<ESC>
 "Insert timestamp on next line
 map <F5> :r!date<CR>
 
-"Bindings for all of the validators
-nnoremap :p8 :!pep8 %<CR>
-nnoremap :pyl :!pylint -d W,E -r n %<CR>
-nnoremap :pyr :!pylint -d W,E -r y %<CR>
+""Bindings for all of the validators
+"nnoremap :p8 :!pep8 %<CR>
+"nnoremap :pyl :!pylint -d W,E -r n %<CR>
+"nnoremap :pyr :!pylint -d W,E -r y %<CR>
 
 "go vertical even with line wraps and don't jump
 "noremap j gj
