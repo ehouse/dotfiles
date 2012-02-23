@@ -13,6 +13,9 @@ filetype plugin indent on     " required!
 set background=dark
 colorscheme desert
 
+set cc=80
+highlight ColorColumn ctermbg=gray
+
 "Map , as the leader key
 let mapleader = ","
 
@@ -93,7 +96,6 @@ set encoding=utf-8  " Set file encoding
 set termencoding=utf-8
 
 "Backups are for pussies. Save often. Use version control.
-"Don't be a pussy. 
 set nobackup
 set noswapfile
 set noautowrite      " When I want to write to a file, I'll say so
@@ -126,7 +128,7 @@ map <Leader>x :%!tidy -utf8 -xml -i -q -w 0<CR>
 
 """"""Keybindings
 " Map ; to : in normal mode for mega-easy vim commands. 
-"nnoremap ; :
+nnoremap ; :
 
 " Map a quick way to save the current session
 nmap <Leader>s :mksession session.vim<CR>
@@ -141,10 +143,10 @@ nnoremap Y y$
 cmap w!! w !sudo tee % >/dev/null
 
 " Word swapping
-nmap <silent> gw "_yiw:s/\(\%#\w\+\)\(\W\+\)\(\w\+\)/\3\2\1/<cr><c-o><c-l>
+" silent <nmap> gw "_yiw:s/\(\%#\w\+\)\(\W\+\)\(\w\+\)/\3\2\1/<cr><c-o><c-l>
 
 " Character swapping
-nmap <silent> gc xph
+" nmap <silent> gc xph
 
 " hit escape to remove search highlighting 
 nnoremap <esc> :noh<return><esc>
