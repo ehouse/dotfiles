@@ -4,6 +4,7 @@ ln -s ~/dotfiles/vim ~/.vim
 ln -s ~/dotfiles/vim/vimrc ~/.vimrc
 ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
 ln -s ~/dotfiles/zsh ~/.zsh
+ln -s ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
 rm ~/.vim/bundle/* -rf
 git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 rm ~/dotfiles/zsh/zsh-syntax-highlighting/ -rf

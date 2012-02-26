@@ -6,3 +6,4 @@ rm ~/.zsh -rf
 rm ~/.zsh-syntax-highlighting -rf
 rm ~/dotfiles/zsh/zsh-syntax-highlighting/ -rf
 rm ~/.vim/bundle/* -rf
+rm ~/.tmux.conf
