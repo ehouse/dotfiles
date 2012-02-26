@@ -1,4 +1,4 @@
-[[ $TERM != "screen" ]] && tmux && exit
+#[[ $TERM != "screen" ]] && tmux && exit
 source $HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Filename:      /etc/zsh/zshrc
 # Purpose:       config file for zsh (z shell)
