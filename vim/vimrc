@@ -73,16 +73,13 @@ map <leader>T :%s/\t/    /gg<CR>
 """""Terminal
 set showcmd
 set laststatus=2
-
 "fancy status bar
 set report=0        " Show number of lines changed by : commands
 set ch=1 "Set height of command line
-
 "levels of undo
 set history=1000
 set undolevels=1000
 
-"Disable foldable code
 set nofoldenable
 
 "Search things
