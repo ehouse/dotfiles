@@ -1709,32 +1709,16 @@ fi
 
 # {{{ 'hash' some often used directories
 #d# start
-hash -d deb=/var/cache/apt/archives
 hash -d doc=/usr/share/doc
 hash -d linux=/lib/modules/$(command uname -r)/build/
 hash -d log=/var/log
 hash -d slog=/var/log/syslog
 hash -d src=/usr/src
-hash -d templ=/usr/share/doc/grml-templates
-hash -d tt=/usr/share/doc/texttools-doc
 hash -d www=/var/www
 #d# end
 # }}}
 
 # {{{ some aliases
-if check_com -c screen ; then
-    if [[ $UID -eq 0 ]] ; then
-        [[ -r /etc/grml/screenrc ]] && alias screen="${commands[screen]} -c /etc/grml/screenrc"
-    elif [[ -r $HOME/.screenrc ]] ; then
-        alias screen="${commands[screen]} -c $HOME/.screenrc"
-    else
-        if [[ -r /etc/grml/screenrc_grml ]]; then
-            alias screen="${commands[screen]} -c /etc/grml/screenrc_grml"
-        else
-            [[ -r /etc/grml/screenrc ]] && alias screen="${commands[screen]} -c /etc/grml/screenrc"
-        fi
-    fi
-fi
 
 # do we have GNU ls with color-support?
 if ls --help 2>/dev/null | grep -- --color= >/dev/null && [[ "$TERM" != dumb ]] ; then
