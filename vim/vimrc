@@ -95,7 +95,7 @@ set smartcase
 set encoding=utf-8  " Set file encoding
 set termencoding=utf-8
 
-"Backups are for pussies. Save often. Use version control.
+"Backups are for wimps. Save often. Use version control.
 set nobackup
 set noswapfile
 set noautowrite      " When I want to write to a file, I'll say so
