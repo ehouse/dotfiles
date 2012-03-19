@@ -2207,7 +2207,12 @@ fi
 #f5# cd to directoy and list files
 cl() {
     emulate -L zsh
-    cd $1 && ls -a
+    cd $1 && ls
+}
+
+cla(){
+	emulate -L zsh
+	cd $1 && ls -a
 }
 
 # Usage: simple-extract <file>
