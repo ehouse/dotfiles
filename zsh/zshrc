@@ -2047,14 +2047,6 @@ fi
 # load the lookup subsystem if it's available on the system
 zrcautoload lookupinit && lookupinit
 
-#:grep:marker:for:mika: :-)
-### non-root (EUID != 0) code below
-###
-
-if (( GRML_ALWAYS_LOAD_ALL == 0 )) && (( $EUID == 0 )) ; then
-    zrclocal
-    return 0
-fi
 
 # variables {{{
 
