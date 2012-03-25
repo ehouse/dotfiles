@@ -1,25 +1,20 @@
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
-
-Bundle 'gmarik/vundle'
-Bundle 'majutsushi/tagbar'
-
 set nocompatible
 filetype off  " required!
 filetype plugin off
 
 filetype plugin indent on     " required!
 
-set background=dark
-colorscheme desert
 
-set cc=80
-highlight ColorColumn ctermbg=gray
+try
+	set cc=80
+	highlight ColorColumn ctermbg=gray
+catch
+endtry
 
 "Map , as the leader key
 let mapleader = ","
 
-" Filetype templates
+" File type templates
 autocmd! BufNewFile * silent! 0r ~/.vim/skel/template.%:e
 
 """"""Die, Error bells
@@ -29,6 +24,8 @@ syntax on
 syntax sync fromstart
 
 """"""Visual
+colorscheme desert
+
 set number
 set showmode
 set wrap
@@ -50,22 +47,24 @@ if bufwinnr(1)
 	map <kMultiply> <c-w>>
 endif
 " Maps Alt-[h,j,k,l] to resizing a window split
-" map <silent> <A-h> <C-w><
-" map <silent> <A-j> <C-W>-
-" map <silent> <A-k> <C-W>+
-" map <silent> <A-l> <C-w>>
-" map <silent> <A-s> :split<CR>
-" map <silent> <A-v> :vsplit<CR>
+ map <silent> <A-h> <C-w><
+ map <silent> <A-j> <C-W>-
+ map <silent> <A-k> <C-W>+
+ map <silent> <A-l> <C-w>>
+ map <silent> <A-s> :split<CR>
+ map <silent> <A-v> :vsplit<CR>
 
 """"""Indentation
 set shiftwidth=3
 set tabstop=3
 set listchars=tab:>-,trail:-,eol:$,nbsp:%
 set list
-" This turns indentation into just 'start at the same as previoius line'
-"set autoindent
-"set nosmartindent
-"set nocindent
+
+" This turns indentation into just 'start at the same as previous line'
+set autoindent
+set smartindent
+set nocindent
+
 " Convert file between spaces and tabs
 map <leader>t :%s/    /\t/gg<CR>
 map <leader>T :%s/\t/    /gg<CR>
@@ -123,15 +122,12 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 
 """""XML stuff
-"autocmd FileType xml,xslt,html,css set ts=2 shiftwidth=2 expandtab
-"map <Leader>x :%!tidy -utf8 -xml -i -q -w 0<CR>
+autocmd FileType xml,xslt,html,css set ts=2 shiftwidth=2 expandtab
+map <Leader>x :%!tidy -utf8 -xml -i -q -w 0<CR>
 
 """"""Keybindings
 " Map ; to : in normal mode for mega-easy vim commands. 
 nnoremap ; :
-
-" Map a quick way to save the current session
-nmap <Leader>s :mksession session.vim<CR>
 
 "let jj get you out of insert mode
 inoremap jj <ESC>
@@ -141,15 +137,6 @@ nnoremap Y y$
 
 "w!! writes the file using sudo
 cmap w!! w !sudo tee % >/dev/null
-
-" Word swapping
-" silent <nmap> gw "_yiw:s/\(\%#\w\+\)\(\W\+\)\(\w\+\)/\3\2\1/<cr><c-o><c-l>
-
-" Character swapping
-" nmap <silent> gc xph
-
-" hit escape to remove search highlighting 
-"nnoremap <esc> :noh<return><esc>
 
 " tabs
 " create a new tab
@@ -162,11 +149,6 @@ nmap <CR> o<ESC>
 
 "Insert timestamp on next line
 map <F5> :r!date<CR>
-
-""Bindings for all of the validators
-"nnoremap :p8 :!pep8 %<CR>
-"nnoremap :pyl :!pylint -d W,E -r n %<CR>
-"nnoremap :pyr :!pylint -d W,E -r y %<CR>
 
 "go vertical even with line wraps and don't jump
 "noremap j gj
@@ -185,6 +167,3 @@ map [] k$][%?}<CR>
 " Toggle paste/nopaste
 map <Leader>ip :set invpaste invnumber invlist<CR>
 
-" Tagbar crap
-let g:tagbar_usearrows = 1
-nmap <F8> :TagbarToggle<CR>

@@ -1772,8 +1772,8 @@ iso2utf() {
 check_com 0 || alias 0='return 0'
 
 # for really lazy people like mika:
-check_com S &>/dev/null || alias S='screen'
-check_com s &>/dev/null || alias s='ssh'
+# check_com S &>/dev/null || alias S='screen'
+# check_com s &>/dev/null || alias s='ssh'
 
 
 # get top 10 shell commands:
