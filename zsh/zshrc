@@ -1778,6 +1778,7 @@ check_com 0 || alias 0='return 0'
 
 # get top 10 shell commands:
 alias top10='print -l ? ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
+alias sl='sl -al'
 
 
 # if cdrecord is a symlink (to wodim) or isn't present at all warn:
@@ -2077,6 +2078,8 @@ alias smartfont='echo -en "\033]50;-artwiz-smoothansi-*-*-*-*-*-*-*-*-*-*-*-*\00
 alias semifont='echo -en "\033]50;-misc-fixed-medium-r-semicondensed-*-*-120-*-*-*-*-iso8859-15\007"'
 
 # general
+#Fix common stupid typo of mine
+alias s='ls'
 #a2# Execute \kbd{du -sch}
 alias da='du -sch'
 #a2# Execute \kbd{jobs -l}
