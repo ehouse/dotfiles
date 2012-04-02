@@ -3,12 +3,6 @@ filetype on
 filetype plugin on
 filetype plugin indent on
 
-try
-	set cc=80
-	highlight ColorColumn ctermbg=red
-catch
-endtry
-
 "Map , as the leader key
 let mapleader = ","
 
@@ -21,6 +15,7 @@ syntax sync fromstart
 """"""Visual
 
 colorscheme 256-jungle
+highlight ColorColumn ctermbg=red
 set bg=dark
 set number
 set showmode
@@ -157,6 +152,8 @@ map [] k$][%?}<CR>
 
 " Toggle paste/nopaste
 map <Leader>ip :set invpaste invnumber invlist<CR>
+
+map <Leader>l :set cc=80<CR>
 
 " Enable Spell Check
 map <Leader>s :setlocal spell!<CR>
