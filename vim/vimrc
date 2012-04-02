@@ -21,6 +21,7 @@ syntax sync fromstart
 """"""Visual
 
 colorscheme 256-jungle
+set bg=dark
 set number
 set showmode
 set wrap
@@ -158,10 +159,10 @@ map [] k$][%?}<CR>
 map <Leader>ip :set invpaste invnumber invlist<CR>
 
 " Enable Spell Check
-map <Leader>s :setlocal spell<CR>
+map <Leader>s :setlocal spell!<CR>
 
 " create cursor line on terminal
-noremap <Leader>c :set cursorline! cursorcolumn!<CR>
+noremap <Leader>c :set cursorline! <CR>
 
 
 " End of File "
