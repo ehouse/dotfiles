@@ -1,21 +1,16 @@
-set nocompatible
-filetype off  " required!
-filetype plugin off
-
-filetype plugin indent on     " required!
-
+set nocompatible "Make Vim, Vim and not vi
+filetype on
+filetype plugin on
+filetype plugin indent on
 
 try
 	set cc=80
-	highlight ColorColumn ctermbg=gray
+	highlight ColorColumn ctermbg=red
 catch
 endtry
 
 "Map , as the leader key
 let mapleader = ","
-
-" File type templates
-autocmd! BufNewFile * silent! 0r ~/.vim/skel/template.%:e
 
 """"""Die, Error bells
 set noerrorbells
@@ -24,13 +19,12 @@ syntax on
 syntax sync fromstart
 
 """"""Visual
-colorscheme desert
 
+colorscheme 256-jungle
 set number
 set showmode
 set wrap
 set wrapmargin=8000
-set background=dark
 set ruler
 set backspace=start,indent,eol
 set showmatch       " Briefly jump to a paren once it's balanced
@@ -63,7 +57,7 @@ set list
 " This turns indentation into just 'start at the same as previous line'
 set autoindent
 set smartindent
-set nocindent
+set cindent
 
 " Convert file between spaces and tabs
 map <leader>t :%s/    /\t/gg<CR>
@@ -121,10 +115,6 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 "autocmd FileType python inoremap : ;
 
 
-"""""XML stuff
-autocmd FileType xml,xslt,html,css set ts=2 shiftwidth=2 expandtab
-map <Leader>x :%!tidy -utf8 -xml -i -q -w 0<CR>
-
 """"""Keybindings
 " Map ; to : in normal mode for mega-easy vim commands. 
 nnoremap ; :
@@ -167,3 +157,11 @@ map [] k$][%?}<CR>
 " Toggle paste/nopaste
 map <Leader>ip :set invpaste invnumber invlist<CR>
 
+" Enable Spell Check
+map <Leader>s :setlocal spell<CR>
+
+" create cursor line on terminal
+noremap <Leader>c :set cursorline! cursorcolumn!<CR>
+
+
+" End of File "
