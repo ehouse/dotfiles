@@ -1,7 +1,31 @@
-set nocompatible "Make Vim, Vim and not vi
-filetype on
-filetype plugin on
+"- required --
+set nocp " non vi compatible mode
+filetype plugin on " enable plugins
 filetype plugin indent on
+
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+" Keeps vundle up to date
+Bundle 'gmarik/vundle'
+
+" Vim Bundles"
+" taglist - sidebar with function names
+Bundle 'taglist.vim'
+" surround - add things around sentences like quotes or parents
+Bundle 'surround.vim'
+" superTab - autocompletion on functions and variables
+Bundle 'SuperTab'
+" snipMate - Generates commonly used code blocks
+Bundle 'snipMate'
+" lodgeit - copy file into vim with :Lodgeit <file>
+Bundle 'lodgeit.vim'
+" autoproto - Displays function info for C programs only
+Bundle 'autoproto.vim'
+" NERDTree - God damn do I love nerdtree
+Bundle 'scrooloose/nerdtree'
+" A useless plugin, nerdtree is better
+"Bundle 'fholgado/minibufexpl.vim'
 
 "Map , as the leader key
 let mapleader = ","
@@ -27,14 +51,6 @@ set showmatch       " Briefly jump to a paren once it's balanced
 set matchtime=2     " Do so for exactly 2 seconds
 set scrolloff=5 "Keep the cursor at least 5 lines from the top and bottom
 
-"""""" Ctags Stuff
-"""""" I do not know how this will function with out the required plugins
-"""""" More testing is needed. I will implement Bundles when it becomes a 
-"""""" Pain in the ass to install ctags
-let Tlist_Ctags_Cmd = "/usr/bin/ctags"
-let Tlist_WinWidth = 35
-map <leader>tt :TlistToggle<cr>
-map <leader>tc :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 """"""Buffer management
 " Use +/- to change window height
@@ -62,7 +78,7 @@ set list
 " This turns indentation into just 'start at the same as previous line'
 set autoindent
 set smartindent
-set cindent
+" set cindent
 
 " Convert file between spaces and tabs
 map <leader>t :%s/    /\t/gg<CR>
@@ -116,8 +132,8 @@ au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " Map ; to : for great pythonic justice
-"autocmd FileType python inoremap ; :
-"autocmd FileType python inoremap : ;
+autocmd FileType python inoremap ; :
+autocmd FileType python inoremap : ;
 
 
 """"""Keybindings
@@ -133,28 +149,15 @@ nnoremap Y y$
 "w!! writes the file using sudo
 cmap w!! w !sudo tee % >/dev/null
 
-" tabs
-" create a new tab
-map :tc :tabnew %<cr>
-" close a tab
-map :td :tabclose<cr>
-
 "let me add newlines by hitting enter in normal mode
 nmap <CR> o<ESC>
 
 "Insert timestamp on next line
-map <F5> :r!date<CR>
+map <Leader>time :r!date<CR>
 
 "go vertical even with line wraps and don't jump
 "noremap j gj
 "noremap k gk
-
-" Mappings to jump me to the beginning of functions
-" Cred to Globe for these ones
-map [[ ?{<CR>w99[{
-map ][ /}<CR>b99]}
-map ]] j0[[%/{<CR>
-map [] k$][%?}<CR>
 
 " take you out of insert mode after being inactive for a while
 " au CursorHoldI * stopinsert
@@ -167,8 +170,20 @@ map <Leader>l :set cc=80<CR>
 " Enable Spell Check
 map <Leader>s :setlocal spell!<CR>
 
+" Open NERDTree
+map <Leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
+
 " create cursor line on terminal
 noremap <Leader>c :set cursorline! <CR>
+
+"""""" Ctags Stuff
+"""""" I do not know how this will function with out the required plugins
+"""""" More testing is needed. I will implement Bundles when it becomes a 
+"""""" Pain in the ass to install ctags
+let Tlist_Ctags_Cmd = "/usr/bin/ctags"
+let Tlist_WinWidth = 35
+map <leader>tt :TlistToggle<cr>
+map <leader>tc :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 
 " End of File "
