@@ -40,7 +40,6 @@ syntax sync fromstart
 
 colorscheme 256-jungle
 highlight ColorColumn ctermbg=red
-set bg=dark
 set number
 set showmode
 set wrap
