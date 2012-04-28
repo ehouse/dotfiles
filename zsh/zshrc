@@ -1720,6 +1720,8 @@ hash -d www=/var/www
 
 # {{{ some aliases
 
+alias tmux='tmux -2'
+
 # do we have GNU ls with color-support?
 if ls --help 2>/dev/null | grep -- --color= >/dev/null && [[ "$TERM" != dumb ]] ; then
     #a1# execute \kbd{@a@}:\quad ls with colors
@@ -1778,8 +1780,6 @@ check_com 0 || alias 0='return 0'
 
 # get top 10 shell commands:
 alias top10='print -l ? ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
-alias sl='sl -al'
-
 
 # if cdrecord is a symlink (to wodim) or isn't present at all warn:
 if [[ -L /usr/bin/cdrecord ]] || ! check_com -c cdrecord; then
