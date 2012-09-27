@@ -71,7 +71,7 @@ endif
 """"""Indentation
 set shiftwidth=3
 set tabstop=3
-set listchars=tab:>-,trail:-,eol:¶,nbsp:%
+set listchars=tab:\|\ ,trail:-,eol:¶,nbsp:%
 set list
 
 " This turns indentation into just 'start at the same as previous line'
