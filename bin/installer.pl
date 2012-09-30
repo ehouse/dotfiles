@@ -6,15 +6,15 @@ my $user = `whoami`;
 my $zshloc = `which zsh`, my $zsherr = $?;
 my $shell = `echo \$SHELL`;
 
-print "This will remove your zshrc,vimrc,tmux.conf files in ~./\nAre you Sure? (y/N) ";
+print "This will remove your ~/.zshrc, ~/.zsh, ~/.vimrc, ~/.vim, and ~/.tmux.conf files.\nAre you Sure? (y/N) ";
 die unless <STDIN> =~ m/[Yy]/;
 
 if(!$zsherr){
 	if($shell =~ m/zsh/){
 		print "No Need to Change your Shell, Winner!\n"
-	}else{
+	} else{
 		print "Changing Shell to ZSH\n";
-		`chsh $user -s $zshloc` or die;
+		system 'chsh $user -s $zshloc' or die $?;
 	}
 }
 system 'rm ~/.vimrc ~/.vim ~/.zshrc ~/.zsh ~/dotfiles/zsh/zsh-syntax-highlighting/ ~/.tmux.conf -rf';
@@ -27,7 +27,7 @@ system 'git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle';
 system 'git clone git://github.com/zsh-users/zsh-syntax-highlighting.git ~/dotfiles/zsh/zsh-syntax-highlighting';
 system 'ln -s ~/dotfiles/zsh/zsh-syntax-highlighting/ ~/.zsh-syntax-highlighting';
 
-print "Setup Complet\n";
+print "Setup Complete\n";
 print "Please Restart Terminal for Changes to Take Effect\n";
 
 ### END OF FILE
