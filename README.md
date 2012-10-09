@@ -5,12 +5,13 @@ includes vimrc, zshrc, tmux.conf and install script
 
 ###Setup
 
+####Install
 run the install script<br />
 `./bin/installer.pl`<br />
 This creates soft links to the correct files in dotfiles folder<br />
 If you need a custom zsh location run `chsh` before you run the installer<br />
 
-##Setup Vim
+####Setup Vim
 The vim Configuration uses [vundle](https://github.com/gmarik/vundle)<br />
 To install bundles:<br />
 Start vim<br />
