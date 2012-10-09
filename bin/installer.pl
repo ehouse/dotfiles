@@ -14,7 +14,7 @@ if(!$zsherr){
 		print "No Need to Change your Shell, Winner!\n"
 	} else{
 		print "Changing Shell to ZSH\n";
-		system 'chsh $user -s $zshloc' or die $?;
+		system 'chsh $user -s /bin/zsh';
 	}
 }
 system 'rm ~/.vimrc ~/.vim ~/.zshrc ~/.zsh ~/dotfiles/zsh/zsh-syntax-highlighting/ ~/.tmux.conf -rf';
