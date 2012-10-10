@@ -128,7 +128,7 @@ set undolevels=1000
 
 " Function to return current directory for status line
 function! CurDir()
-	let curdir = substitute(getcwd(), '/home/ryansb/', "~/", "g")
+	let curdir = substitute(getcwd(), '/home/ross/', "~/", "g")
 		return curdir
 	endfunction
 
@@ -169,10 +169,6 @@ highlight BadWhitespace ctermbg=red guibg=red
 au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
 " Make trailing whitespace be flagged as bad.
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-
-" Map ; to : for great pythonic justice
-autocmd FileType python inoremap ; :
-autocmd FileType python inoremap : ;
 
 " set foldmethod (fdm) to be indent-based for Python
 autocmd FileType python set fdm=indent
