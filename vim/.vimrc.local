@@ -1,0 +1,9 @@
+" I hate the relative line numbers
+ UnBundle 'myusuf3/numbers.vim'
+ set number
+ set norelativenumber
+ set wrap
+ "let jj get you out of insert mode
+ inoremap jj <ESC>"
+ " Map ; to : in normal mode for mega-easy vim commands
+ nnoremap ; :
