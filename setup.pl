@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+### DEPRECATED: USE MAKEFILE ###
 use strict;
 use warnings;
 
