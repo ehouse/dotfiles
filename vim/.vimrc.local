@@ -10,3 +10,5 @@ nnoremap ; :
 
 " Map enter to create new lines in normal mode
 nmap <Enter> o<Esc>
+
+set nomodeline
