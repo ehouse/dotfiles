@@ -1,4 +1,5 @@
 .PHONY: vim zsh tmux clean purge rzsh rvim rcurl rbash rstow rssh
+SSH_KEY=$(HOME)/.ssh/id_rsa
 
 all: clean zsh vim
 
@@ -14,7 +15,7 @@ tmux: rstow
 	stow -d $(HOME)/dotfiles tmux
 
 ssh: rssh
-	ssh-keygen
+	@if [ ! -f $(SSH_KEY) ]; then ssh-keygen; fi
 
 i3: rstow
 	stow -d $(HOME)/dotfiles i3
