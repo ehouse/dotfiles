@@ -2,6 +2,9 @@
 UnBundle 'myusuf3/numbers.vim'
 UnBundle 'nathanaelkane/vim-indent-guides'
 
+" Don't hide characters from me"
+let g:vim_json_syntax_conceal = 0
+
 set wrap
 "let jj get you out of insert mode
 inoremap jj <ESC>"
