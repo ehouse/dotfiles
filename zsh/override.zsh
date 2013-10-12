@@ -6,4 +6,6 @@ alias tmux="tmux -2"
 export TERM=xterm-256color
 export EDITOR=vim
 
+alias sl=sl
+
 #### END OF FILE
