@@ -3,12 +3,14 @@ SSH_KEY=$(HOME)/.ssh/id_rsa
 
 all: clean zsh vim
 
+root: all
+
 vim: rstow rbash rvim
 	stow -d $(HOME)/dotfiles vim
-	curl -L http://j.mp/spf13-vim3 | sh
+	curl -L http://j.mp/spf13-vim3 | bash
 
 zsh: rcurl rstow rzsh
-	curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+	curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | bash
 	stow -d $(HOME)/dotfiles -t $(HOME)/.oh-my-zsh/custom zsh
 
 tmux: rstow
@@ -23,6 +25,7 @@ i3: rstow
 clean:
 	rm -f $(HOME)/.tmux.conf
 	rm -f $(HOME)/.vimrc.local
+	rm -f $(HOME)/.vimrc.bundles.local
 	rm -f $(HOME)/.oh-my-zsh/custom/override.zsh
 	rm -rf $(HOME)/.i3*
 
