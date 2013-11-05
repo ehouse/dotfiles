@@ -8,7 +8,7 @@
 "------------------------------------------------------------
 
 " Custom Override settings
-colorscheme distinguished
+colorscheme twilight
 
 
 " Features {{{1
