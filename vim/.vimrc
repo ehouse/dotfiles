@@ -8,7 +8,7 @@
 "------------------------------------------------------------
 
 " Custom Override settings
-colorscheme desert
+colorscheme distinguished
 
 
 " Features {{{1
