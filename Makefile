@@ -7,7 +7,6 @@ root: all
 
 vim: rstow rbash rvim
 	stow -d $(HOME)/dotfiles vim
-	curl -L http://j.mp/spf13-vim3 | bash
 
 zsh: rcurl rstow rzsh
 	curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | bash
