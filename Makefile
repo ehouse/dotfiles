@@ -6,20 +6,20 @@ all: clean zsh vim
 root: all
 
 vim: rstow rbash rvim
-	stow -d $(HOME)/dotfiles vim
+	stow vim
 
 zsh: rcurl rstow rzsh
 	curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | bash
-	stow -d $(HOME)/dotfiles -t $(HOME)/.oh-my-zsh/custom zsh
+	ln -s $(HOME)/dotfiles/zsh/override.zsh $(HOME)/.oh-my-zsh/custom/override.zsh
 
 tmux: rstow
-	stow -d $(HOME)/dotfiles tmux
+	stow tmux
 
 ssh: rssh
 	@if [ ! -f $(SSH_KEY) ]; then ssh-keygen; fi
 
 i3: rstow
-	stow -d $(HOME)/dotfiles i3
+	stow i3
 
 clean:
 	rm -f $(HOME)/.tmux.conf
