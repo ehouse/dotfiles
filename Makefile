@@ -1,25 +1,29 @@
-.PHONY: vim zsh tmux clean purge rzsh rvim rcurl rbash rstow rssh
+.PHONY: vim zsh tmux clean purge rzsh rvim rcurl rbash rssh i3
 SSH_KEY=$(HOME)/.ssh/id_rsa
 
-all: clean zsh vim
+all: zsh vim
 
 root: all
 
-vim: rstow rbash rvim
-	stow vim
+vim: rbash rvim
+	@ln -sf $(HOME)/dotfiles/vim/vimrc $(HOME)/.vimrc
+	@ln -sf $(HOME)/dotfiles/vim/vim $(HOME)/.vim
+	@echo symlinked .vim
 
-zsh: rcurl rstow rzsh
-	curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | bash
-	ln -s $(HOME)/dotfiles/zsh/override.zsh $(HOME)/.oh-my-zsh/custom/override.zsh
+zsh: rcurl rzsh
+	@ln -sf $(HOME)/dotfiles/zsh/zshrc $(HOME)/.zshrc
 
-tmux: rstow
-	stow tmux
+tmux: 
+	@ln -sf tmux ../.tmux
+	@echo symlinked .tmux
 
 ssh: rssh
 	@if [ ! -f $(SSH_KEY) ]; then ssh-keygen; fi
 
-i3: rstow
-	stow i3
+i3: 
+	@mkdir -p $(HOME)/.i3
+	@ln -sf $(HOME)/dotfiles/i3/config $(HOME)/.i3/config
+	@echo symlinked .i3
 
 clean:
 	rm -f $(HOME)/.tmux.conf
@@ -46,9 +50,6 @@ rcurl:
 
 rbash:
 	@which bash >/dev/null
-
-rstow:
-	@which stow >/dev/null
 
 rssh:
 	@which ssh-keygen >/dev/null
