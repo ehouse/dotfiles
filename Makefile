@@ -1,23 +1,22 @@
-.PHONY: vim zsh tmux clean purge rzsh rvim rcurl rbash rssh i3
 SSH_KEY=$(HOME)/.ssh/id_rsa
+all: zsh vim tmux ssh
 
-all: zsh vim
-
-root: all
-
-vim: rbash rvim
+vim:
 	@ln -sf $(HOME)/dotfiles/vim/vimrc $(HOME)/.vimrc
 	@ln -sf $(HOME)/dotfiles/vim/vim $(HOME)/.vim
 	@echo symlinked .vim
 
-zsh: rcurl rzsh
+zsh: 
+	@git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh 
 	@ln -sf $(HOME)/dotfiles/zsh/zshrc $(HOME)/.zshrc
+	@echo installed oh-my-zsh
+	@echo symlinked .zshrc
 
 tmux: 
 	@ln -sf tmux ../.tmux
 	@echo symlinked .tmux
 
-ssh: rssh
+ssh:
 	@if [ ! -f $(SSH_KEY) ]; then ssh-keygen; fi
 
 i3: 
@@ -27,29 +26,13 @@ i3:
 
 clean:
 	rm -f $(HOME)/.tmux.conf
-	rm -f $(HOME)/.vimrc.local
-	rm -f $(HOME)/.vimrc.bundles.local
-	rm -f $(HOME)/.oh-my-zsh/custom/override.zsh
-	rm -rf $(HOME)/.i3*
+	rm -rf $(HOME)/.i3
+	rm -f $(HOME)/.vimrc
+	rm -f $(HOME)/.zshrc
 
 purge: clean
 	rm -rf $(HOME)/.vim*
 	rm -rf $(HOME)/.oh-my-zsh*
 	rm -rf $(HOME)/.zsh*
-	rm -rf $(HOME)/.spf13-vim-3*
 
-### Check Dependencies Requirement
-rzsh:
-	@which zsh >/dev/null
-
-rvim:
-	@which vim >/dev/null
-
-rcurl:
-	@which curl >/dev/null
-
-rbash:
-	@which bash >/dev/null
-
-rssh:
-	@which ssh-keygen >/dev/null
+.PHONY: vim zsh tmux clean purge i3
