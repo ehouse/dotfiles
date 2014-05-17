@@ -64,5 +64,7 @@ export LANG=en_US.UTF-8
 alias tmux="tmux -2"
 export TERM=xterm-256color
 export EDITOR=vim
+#trains
+alias sl=sl
 
 export PKG_PATH=ftp://ftp.openbsd.org/pub/OpenBSD/5.4/packages/amd64/

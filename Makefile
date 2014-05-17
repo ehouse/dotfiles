@@ -13,7 +13,7 @@ zsh:
 	@echo symlinked .zshrc
 
 tmux: 
-	@ln -sf tmux ../.tmux
+	@ln -sf tmux ../tmux
 	@echo symlinked .tmux
 
 ssh:
