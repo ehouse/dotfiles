@@ -4,6 +4,9 @@ all: zsh vim tmux ssh
 vim:
 	@ln -sf $(HOME)/dotfiles/vim/vimrc $(HOME)/.vimrc
 	@ln -sf $(HOME)/dotfiles/vim/vim $(HOME)/.vim
+	@mkdir -p $(HOME)/dotfiles/vim/bundle
+	@git clone https://github.com/gmarik/Vundle.vim.git $(HOME)/dotfiles/vim/vim/bundle/Vundle.vim
+	@vim +PluginInstall +qall
 	@echo symlinked .vim
 
 zsh: 
@@ -13,7 +16,7 @@ zsh:
 	@echo symlinked .zshrc
 
 tmux: 
-	@ln -sf tmux ../tmux
+	@ln -sf $(HOME)/dotfiles/tmux/tmux.conf $(HOME)/.tmux.conf
 	@echo symlinked .tmux
 
 ssh:
@@ -34,5 +37,6 @@ purge: clean
 	rm -rf $(HOME)/.vim*
 	rm -rf $(HOME)/.oh-my-zsh*
 	rm -rf $(HOME)/.zsh*
+	rm -rf $(HOME)/dotfiles/vim/vim/bundle
 
 .PHONY: vim zsh tmux clean purge i3

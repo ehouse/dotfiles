@@ -1,8 +1,14 @@
-colorscheme distinguished
-
 set nocompatible
 filetype indent plugin on
 syntax on
+
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-markdown'
+call vundle#end()
 
 set hidden
 set wildmenu
@@ -38,3 +44,5 @@ command WQ wq
 command Wq wq
 command W w
 command Q q
+
+colorscheme distinguished
