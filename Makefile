@@ -20,7 +20,10 @@ tmux:
 	@echo symlinked .tmux
 
 ssh:
-	@if [ ! -f $(SSH_KEY) ]; then ssh-keygen; fi
+	@mkdir -p $(HOME)/.ssh
+	@ln -sf $(HOME)/dotfiles/ssh/config $(HOME)/.ssh/config
+	@echo SSH config setup
+	@if [ ! -f $(SSH_KEY) ]; then ssh-keygen && echo "SSH key generated"; fi
 
 i3: 
 	@mkdir -p $(HOME)/.i3
@@ -39,4 +42,4 @@ purge: clean
 	rm -rf $(HOME)/.zsh*
 	rm -rf $(HOME)/dotfiles/vim/vim/bundle
 
-.PHONY: vim zsh tmux clean purge i3
+.PHONY: vim zsh tmux clean purge i3 ssh
