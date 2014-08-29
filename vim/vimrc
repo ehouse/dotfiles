@@ -8,6 +8,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-markdown'
+Plugin 'nvie/vim-flake8'
 call vundle#end()
 
 set hidden
@@ -44,5 +45,7 @@ command WQ wq
 command Wq wq
 command W w
 command Q q
+
+let g:flake8_max_line_length=150
 
 colorscheme distinguished
