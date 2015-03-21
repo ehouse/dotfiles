@@ -57,19 +57,37 @@ source $ZSH/oh-my-zsh.sh
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
-zstyle :omz:plugins:ssh-agent agent-forwarding on
-
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
 ### Custom Edit Stuff
+# 256 colored tmux
 alias tmux="tmux -2"
 export TERM=xterm-256color
+
+# Vim as default editor
 export EDITOR=vim
-#trains
+
+# TRAINS
 alias sl=sl
 
-export PKG_PATH=ftp://ftp.openbsd.org/pub/OpenBSD/5.4/packages/amd64/
+# Packaged export for OBSD
+export PKG_PATH=ftp://ftp.openbsd.org/pub/OpenBSD/5.6/packages/amd64/
 
+# Python virtual environment
 export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
+if [ -r /usr/local/bin/virtualenvwrapper.sh ]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+fi
+
+# SSH and gpg agent
+zstyle :omz:plugins:ssh-agent on
+
+envfile="$HOME/.gnupg/gpg-agent.env"
+if [[ -e "$envfile" ]] && kill -0 $(grep GPG_AGENT_INFO "$envfile" | cut -d: -f 2) 2>/dev/null; then
+    eval "$(cat "$envfile")"
+else
+    eval "$(gpg-agent --daemon --enable-ssh-support --write-env-file "$envfile")"
+fi
+export GPG_AGENT_INFO  # the env file does not contain the export statement
+export SSH_AUTH_SOCK   # enable gpg-agent for ssh
