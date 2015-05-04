@@ -1,0 +1,8 @@
+set mbox_type=Maildir
+set mbox="~/Maildir"
+set folder="~/Maildir"
+set mask="!^\\.[^.]"
+set record="+.Sent"
+set postponed="+.Drafts"
+set spoolfile="~/Maildir"
+set edit_headers=yes

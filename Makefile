@@ -1,5 +1,5 @@
 SSH_KEY=$(HOME)/.ssh/id_rsa
-all: zsh vim tmux ssh
+all: zsh vim tmux ssh mutt
 
 vim:
 	@ln -sf $(HOME)/dotfiles/vim/vimrc $(HOME)/.vimrc
@@ -30,6 +30,9 @@ i3:
 	@ln -sf $(HOME)/dotfiles/i3/config $(HOME)/.i3/config
 	@echo symlinked .i3
 
+mutt:
+	@ln -sf $(HOME)/dotfiles/mutt/muttrc $(HOME)/.muttrc
+
 clean:
 	rm -f $(HOME)/.tmux.conf
 	rm -rf $(HOME)/.i3
@@ -42,4 +45,4 @@ purge: clean
 	rm -rf $(HOME)/.zsh*
 	rm -rf $(HOME)/dotfiles/vim/vim/bundle
 
-.PHONY: vim zsh tmux clean purge i3 ssh
+.PHONY: vim zsh tmux clean purge i3 ssh mutt
