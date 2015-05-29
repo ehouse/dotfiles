@@ -1,5 +1,5 @@
 SSH_KEY=$(HOME)/.ssh/id_rsa
-all: zsh vim tmux ssh mutt
+all: zsh vim tmux ssh
 
 vim:
 	@ln -sf $(HOME)/dotfiles/vim/vimrc $(HOME)/.vimrc
@@ -9,10 +9,13 @@ vim:
 	@vim +PluginInstall +qall
 	@echo symlinked .vim
 
+emacs:
+	@ln -sf $(HOME)/dotfiles/emacs/emacs $(HOME)/.emacs
+	@echo symlinked .emacs
+
 zsh: 
-	@git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh 
+	@git clone https://github.com/tarjoilija/zgen $(HOME)/dotfiles/zgen
 	@ln -sf $(HOME)/dotfiles/zsh/zshrc $(HOME)/.zshrc
-	@echo installed oh-my-zsh
 	@echo symlinked .zshrc
 
 tmux: 
@@ -32,12 +35,14 @@ i3:
 
 mutt:
 	@ln -sf $(HOME)/dotfiles/mutt/muttrc $(HOME)/.muttrc
+	@echo symlinked .emacs
 
 clean:
 	rm -f $(HOME)/.tmux.conf
 	rm -rf $(HOME)/.i3
 	rm -f $(HOME)/.vimrc
 	rm -f $(HOME)/.zshrc
+	rm -f $(HOME)/.emacs
 
 purge: clean
 	rm -rf $(HOME)/.vim*
@@ -45,4 +50,4 @@ purge: clean
 	rm -rf $(HOME)/.zsh*
 	rm -rf $(HOME)/dotfiles/vim/vim/bundle
 
-.PHONY: vim zsh tmux clean purge i3 ssh mutt
+.PHONY: vim zsh tmux clean purge i3 ssh mutt emacs

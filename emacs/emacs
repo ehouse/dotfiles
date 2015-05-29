@@ -1,0 +1,32 @@
+(require 'mu4e)
+(setq
+    mu4e-maildir       "~/Maildir"    ;; top-level Maildir
+    mu4e-sent-folder   "/.Sent"       ;; folder for sent messages
+    mu4e-drafts-folder "/.Drafts"     ;; unfinished messages
+    mu4e-trash-folder  "/.Trash"      ;; trashed messages
+    mu4e-refile-folder "/.Archive")   ;; saved messages
+
+(setq mu4e-update-interval (* 10 60))
+
+; smtp
+(require 'smtpmail)
+
+(setq message-send-mail-function 'smtpmail-send-it
+      smtpmail-starttls-credentials
+      '(("mail.ehouse.io" 587 nil nil))
+      smtpmail-default-smtp-server "mail.ehouse.io"
+      smtpmail-smtp-server "mail.ehouse.io"
+      smtpmail-smtp-service 587
+      smtpmail-debug-info t)
+
+(setq mu4e-reply-to-address "ehouse@ehouse.io"
+      user-mail-address "ehouse@ehouse.io"
+      user-full-name "Ethan House")
+
+(setq mu4e-sent-message-behavior 'delete)
+
+(add-hook 'mu4e-compose-mode-hook
+        (defun my-do-compose-stuff ()
+           My settings for message composition.
+           (set-fill-column 72)
+           (flyspell-mode)))

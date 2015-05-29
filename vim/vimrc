@@ -63,6 +63,7 @@ command Q q
 " f7 to run
 let g:flake8_max_line_length=150
 
+let g:easytags_cmd = '/usr/local/bin/ectags'
 nmap <F8> :TagbarToggle<CR>
 
 colorscheme distinguished
