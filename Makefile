@@ -37,17 +37,16 @@ mutt:
 	@ln -sf $(HOME)/dotfiles/mutt/muttrc $(HOME)/.muttrc
 	@echo symlinked .emacs
 
-clean:
+clean: 
 	rm -f $(HOME)/.tmux.conf
 	rm -rf $(HOME)/.i3
 	rm -f $(HOME)/.vimrc
 	rm -f $(HOME)/.zshrc
 	rm -f $(HOME)/.emacs
-
-purge: clean
 	rm -rf $(HOME)/.vim*
 	rm -rf $(HOME)/.oh-my-zsh*
 	rm -rf $(HOME)/.zsh*
+	rm -rf $(HOME)/dotfiles/.zgen
 	rm -rf $(HOME)/dotfiles/vim/vim/bundle
 
 .PHONY: vim zsh tmux clean purge i3 ssh mutt emacs
