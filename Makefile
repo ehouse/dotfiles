@@ -9,12 +9,7 @@ vim:
 	@vim +PluginInstall +qall
 	@echo symlinked .vim
 
-emacs:
-	@ln -sf $(HOME)/dotfiles/emacs/emacs $(HOME)/.emacs
-	@echo symlinked .emacs
-
 zsh: 
-	@git clone https://github.com/tarjoilija/zgen $(HOME)/dotfiles/zgen
 	@ln -sf $(HOME)/dotfiles/zsh/zshrc $(HOME)/.zshrc
 	@echo symlinked .zshrc
 

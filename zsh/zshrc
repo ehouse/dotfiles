@@ -1,28 +1,13 @@
-# load zgen
-source $HOME/dotfiles/zgen/zgen.zsh
+autoload -U compinit promptinit
+compinit
+promptinit
 
-DISABLE_UPDATE_PROMPT=true
+prompt redhat
 
-# check if there's no init script
-if ! zgen saved; then
-    echo Creating a zgen save
-
-    zgen oh-my-zsh
-
-    # plugins
-    zgen oh-my-zsh plugins/git
-    zgen oh-my-zsh plugins/pass
-    zgen oh-my-zsh plugins/virtualenvwrapper
-
-    # completions
-    zgen load zsh-users/zsh-completions src
-
-    # theme
-    zgen oh-my-zsh themes/gentoo
-
-    # save all to init script
-    zgen save
-fi
+# Aliases
+alias ll="ls -l"
+alias sl=sl
+alias grep=grep
 
 export PATH=$PATH:$HOME/bin:/usr/local/bin
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -37,26 +22,19 @@ export TERM=xterm-256color
 # Vim as default editor
 export EDITOR=vim
 
-# TRAINS
-alias sl=sl
-alias grep=grep
-
-alias mu4e="emacs -e mu4e"
-
 # Python virtual environment
-# if [ -r /usr/local/bin/virtualenvwrapper.sh ]; then
-#     export WORKON_HOME=$HOME/.virtualenvs
-#     source /usr/local/bin/virtualenvwrapper.sh
-# fi
+if [ -r /usr/local/bin/virtualenvwrapper.sh ]; then
+    export WORKON_HOME=$HOME/.virtualenvs
+    source /usr/local/bin/virtualenvwrapper.sh
+fi
 
-#envfile="$HOME/.gnupg/gpg-agent.env"
-#if [ -e "$envfile" ] && kill -0 $(grep GPG_AGENT_INFO "$envfile" | cut -d: -f 2) 2>/dev/null; then
-#    eval "$(cat "$envfile")"
-#else
-#    eval "$(gpg-agent --daemon --write-env-file "$envfile")"
-#fi
-#export GPG_AGENT_INFO  # the env file does not contain the export statement
-#export SSH_AUTH_SOCK   # enable gpg-agent for ssh
+envfile="$HOME/.gnupg/gpg-agent.env"
+if [ -e "$envfile" ] && kill -0 $(grep GPG_AGENT_INFO "$envfile" | cut -d: -f 2) 2>/dev/null; then
+    eval "$(cat "$envfile")"
+else
+    eval "$(gpg-agent --daemon --write-env-file "$envfile")"
+fi
+export GPG_AGENT_INFO  # the env file does not contain the export statement
 
 if [ $(uname -s) = "OpenBSD" ]; then
     alias pkg_search="pkg_info -Q"
