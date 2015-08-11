@@ -1,5 +1,5 @@
 SSH_KEY=$(HOME)/.ssh/id_rsa
-all: zsh vim tmux ssh
+all: clean zsh vim tmux ssh
 
 vim:
 	@ln -sf $(HOME)/dotfiles/vim/vimrc $(HOME)/.vimrc
@@ -10,6 +10,12 @@ vim:
 	@echo symlinked .vim
 
 zsh: 
+	@git clone --recursive https://github.com/sorin-ionescu/prezto.git "$(HOME)/.zprezto"
+	@ln -sf $(HOME)/.zprezto/runcoms/zlogin $(HOME)/.zlogin
+	@ln -sf $(HOME)/.zprezto/runcoms/zlogout $(HOME)/.zlogout
+	@ln -sf $(HOME)/.zprezto/runcoms/zpreztorc $(HOME)/.zpreztorc
+	@ln -sf $(HOME)/.zprezto/runcoms/zprofile $(HOME)/.zprofile
+	@ln -sf $(HOME)/.zprezto/runcoms/zshenv $(HOME)/.zshenv
 	@ln -sf $(HOME)/dotfiles/zsh/zshrc $(HOME)/.zshrc
 	@echo symlinked .zshrc
 
@@ -35,12 +41,10 @@ mutt:
 clean: 
 	rm -f $(HOME)/.tmux.conf
 	rm -rf $(HOME)/.i3
-	rm -f $(HOME)/.vimrc
-	rm -f $(HOME)/.zshrc
 	rm -f $(HOME)/.emacs
 	rm -rf $(HOME)/.vim*
 	rm -rf $(HOME)/.oh-my-zsh*
-	rm -rf $(HOME)/.zsh*
+	rm -rf $(HOME)/.z*
 	rm -rf $(HOME)/dotfiles/.zgen
 	rm -rf $(HOME)/dotfiles/vim/vim/bundle
 
