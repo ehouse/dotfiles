@@ -24,8 +24,12 @@ export LANG=en_US.UTF-8
 alias tmux="tmux -2"
 export TERM=xterm-256color
 
+alias ls="ls -F"
+
 # Vim as default editor
 export EDITOR=vim
+
+git config --global core.editor vim
 
 # Python virtual environment
 if [ -r /usr/local/bin/virtualenvwrapper.sh ]; then
