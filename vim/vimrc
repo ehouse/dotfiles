@@ -60,6 +60,8 @@ command Wq wq
 command W w
 command Q q
 
+au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+
 " f7 to run
 let g:flake8_max_line_length=150
 
@@ -67,3 +69,4 @@ let g:easytags_cmd = '/usr/local/bin/ectags'
 nmap <F8> :TagbarToggle<CR>
 
 colorscheme distinguished
+
