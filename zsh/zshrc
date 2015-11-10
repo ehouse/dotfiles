@@ -28,6 +28,7 @@ alias ls="ls -F"
 
 # Vim as default editor
 export EDITOR=vim
+export VISUAL=vim
 
 git config --global core.editor vim
 
