@@ -1,13 +1,16 @@
-#autoload -U compinit promptinit
-#compinit
-#promptinit
+autoload -U compinit promptinit
+compinit
+promptinit
 
 # Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+#if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  #source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+#fi
 
-prompt skwp
+prompt redhat
+
+zstyle ':completion:*' menu select
+setopt completealiases
 
 # Aliases
 alias ll="ls -l"
