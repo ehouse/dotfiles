@@ -47,9 +47,9 @@ endif
 set autoindent
 set smartindent
 set smarttab
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
+set shiftwidth=3
+set softtabstop=3
+set tabstop=3
 set expandtab
 
 " Auto indent pasted text
@@ -110,13 +110,16 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 "Plugin 'nvie/vim-flake8'
-"Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-misc'
 "Plugin 'sirver/UltiSnips'
-"Plugin 'xolox/vim-easytags'
-"Plugin 'majutsushi/tagbar'
+Plugin 'xolox/vim-easytags'
+Plugin 'majutsushi/tagbar'
 call vundle#end()
 
 map <C-n> :NERDTreeToggle<CR>
+nmap <F8> :TagbarToggle<CR>
+
+noremap <C-l> :noh<CR>
 
 command WQ wq
 command Wq wq
