@@ -9,17 +9,11 @@ vim:
 	@vim +PluginInstall +qall
 	@echo symlinked .vim
 
-zsh: 
-	@git clone --recursive https://github.com/sorin-ionescu/prezto.git "$(HOME)/.zprezto"
-	@ln -sf $(HOME)/.zprezto/runcoms/zlogin $(HOME)/.zlogin
-	@ln -sf $(HOME)/.zprezto/runcoms/zlogout $(HOME)/.zlogout
-	@ln -sf $(HOME)/.zprezto/runcoms/zpreztorc $(HOME)/.zpreztorc
-	@ln -sf $(HOME)/.zprezto/runcoms/zprofile $(HOME)/.zprofile
-	@ln -sf $(HOME)/.zprezto/runcoms/zshenv $(HOME)/.zshenv
+zsh:
 	@ln -sf $(HOME)/dotfiles/zsh/zshrc $(HOME)/.zshrc
 	@echo symlinked .zshrc
 
-tmux: 
+tmux:
 	@ln -sf $(HOME)/dotfiles/tmux/tmux.conf $(HOME)/.tmux.conf
 	@echo symlinked .tmux
 
@@ -29,7 +23,7 @@ ssh:
 	@echo SSH config setup
 	@if [ ! -f $(SSH_KEY) ]; then ssh-keygen && echo "SSH key generated"; fi
 
-i3: 
+i3:
 	@mkdir -p $(HOME)/.i3
 	@ln -sf $(HOME)/dotfiles/i3/config $(HOME)/.i3/config
 	@echo symlinked .i3

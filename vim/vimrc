@@ -47,9 +47,9 @@ endif
 set autoindent
 set smartindent
 set smarttab
-set shiftwidth=3
-set softtabstop=3
-set tabstop=3
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
 set expandtab
 
 " Auto indent pasted text
@@ -86,7 +86,6 @@ set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
 
-"
 " ================ Scrolling ========================
 
 set scrolloff=5         "Start scrolling when we're 8 lines away from margins
@@ -111,9 +110,11 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 "Plugin 'nvie/vim-flake8'
 Plugin 'xolox/vim-misc'
-"Plugin 'sirver/UltiSnips'
-Plugin 'xolox/vim-easytags'
-Plugin 'majutsushi/tagbar'
+"Plugin 'xolox/vim-easytags'
+"Plugin 'majutsushi/tagbar'
+Plugin 'vim-scripts/loremipsum'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 call vundle#end()
 
 map <C-n> :NERDTreeToggle<CR>
@@ -127,3 +128,4 @@ command W w
 command Q q
 
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown textwidth=80
+let g:vim_markdown_frontmatter = 1
