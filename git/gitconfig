@@ -7,7 +7,7 @@
     interactive = auto
     status = auto
 [user]
-	email = ehouse@fastmail.com
+	email = ehouse@palantir.com
 	name = Ethan House
 [core]
 	editor = vim

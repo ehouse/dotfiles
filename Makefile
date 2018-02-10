@@ -1,6 +1,9 @@
 SSH_KEY=$(HOME)/.ssh/id_rsa
 all: git vim zsh tmux ssh
 
+dev-vm:
+	@ansible-playbook -K -i "localhost," -c local $(HOME)/dotfiles/ansible/dev-vm.yml
+
 git:
 	ln -sf $(HOME)/dotfiles/git/gitconfig $(HOME)/.gitconfig
 
@@ -45,4 +48,4 @@ clean:
 	rm -rf $(HOME)/dotfiles/.zgen
 	rm -rf $(HOME)/dotfiles/vim/vim/bundle
 
-.PHONY: git vim zsh tmux clean purge i3 ssh mutt emacs
+.PHONY: dev-vm dev-host git vim zsh tmux clean purge i3 ssh mutt emacs

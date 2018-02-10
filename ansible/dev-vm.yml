@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  vars:
+      yum_packages: [ '@Development tools', 'vim', 'git', 'zsh', 'nmap', 'dstat', 'python34', 'bind-utils', 'wget' ]
+  tasks:
+     - name: Install Yum Packages
+       yum: name={{ yum_packages }} state=latest
+       with_items: "{{ yum_packages }}"
+       when: ansible_os_family == "RedHat"
+       become: true
+     - name: RedHat System Update
+       yum: name='*' state=latest security=yes
+       when: ansible_os_family == "RedHat"
+       become: true
