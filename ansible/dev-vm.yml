@@ -1,14 +1,21 @@
 ---
 - hosts: localhost
   vars:
-      yum_packages: [ '@Development tools', 'vim', 'git', 'zsh', 'nmap', 'dstat', 'python34', 'bind-utils', 'wget' ]
+      yum_packages: [ '@Development tools', 'epel-release.noarch', 'vim', 'git', 'zsh', 'nmap', 'dstat', 'python34', 'bind-utils', 'wget' ]
   tasks:
      - name: Install Yum Packages
-       yum: name={{ yum_packages }} state=latest
+       yum: name={{ yum_packages }} state=present
        with_items: "{{ yum_packages }}"
        when: ansible_os_family == "RedHat"
        become: true
-     - name: RedHat System Update
-       yum: name='*' state=latest security=yes
+
+     - name: Yum System Update
+       cron:
+         name: Yum System Update
+         weekday: 4
+         minute: 0
+         hour: 13
+         user: root
+         job: "/bin/yum update -y"
        when: ansible_os_family == "RedHat"
        become: true
