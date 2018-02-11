@@ -11,7 +11,7 @@ git:
 vim:
 	@if [ $(shell command -v vim &> /dev/null; echo $$?) -eq 1 ]; then echo "Error: Vim required to run this task" && exit 1; fi
 	ln -sf $(HOME)/dotfiles/vim/vimrc $(HOME)/.vimrc
-	if [ -f $(HOME)/.vim ]; then ln -sf $(HOME)/dotfiles/vim/vim $(HOME)/.vim; fi
+	if [ ! -f $(HOME)/.vim ]; then ln -sf $(HOME)/dotfiles/vim/vim $(HOME)/.vim; fi
 	@mkdir -p $(HOME)/dotfiles/vim/bundle
 	@if [ ! -d $(HOME)/dotfiles/vim/vim/bundle/Vundle.vim ]; then git clone https://github.com/gmarik/Vundle.vim.git $(HOME)/dotfiles/vim/vim/bundle/Vundle.vim; fi
 	vim +PluginInstall +qall
