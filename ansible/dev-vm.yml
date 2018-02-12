@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   vars:
-      yum_packages: [ '@Development tools', 'epel-release.noarch', 'vim', 'git', 'zsh', 'nmap', 'dstat', 'python34', 'bind-utils', 'wget' ]
+      yum_packages: [ '@Development tools', 'epel-release.noarch', 'vim', 'git', 'zsh', 'nmap', 'dstat', 'sysstat', 'python34', 'bind-utils', 'wget' ]
   tasks:
      - name: Install Yum Packages
        yum: name={{ yum_packages }} state=present
