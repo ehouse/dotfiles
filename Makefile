@@ -22,7 +22,7 @@ tmux:
 
 ssh:
 	@mkdir -p $(HOME)/.ssh
-	ln -sf $(HOME)/dotfiles/ssh/config $(HOME)/.ssh/config
+	@cp -f $(HOME)/dotfiles/ssh/config $(HOME)/.ssh/config
 	@echo SSH config setup
 	@if [ ! -f $(SSH_KEY) ]; then ssh-keygen && echo "SSH key generated"; fi
 
