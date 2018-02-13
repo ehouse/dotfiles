@@ -1,5 +1,5 @@
 SSH_KEY=$(HOME)/.ssh/id_rsa
-all: clean zsh vim tmux ssh
+all: git vim zsh tmux ssh
 
 git:
 	ln -sf $(HOME)/dotfiles/git/gitconfig $(HOME)/.gitconfig
@@ -8,7 +8,7 @@ vim:
 	ln -sf $(HOME)/dotfiles/vim/vimrc $(HOME)/.vimrc
 	ln -sf $(HOME)/dotfiles/vim/vim $(HOME)/.vim
 	@mkdir -p $(HOME)/dotfiles/vim/bundle
-	@git clone https://github.com/gmarik/Vundle.vim.git $(HOME)/dotfiles/vim/vim/bundle/Vundle.vim
+	@if [ ! -d $(HOME)/dotfiles/vim/vim/bundle/Vundle.vim ]; then git clone https://github.com/gmarik/Vundle.vim.git $(HOME)/dotfiles/vim/vim/bundle/Vundle.vim; fi
 	@vim +PluginInstall +qall
 	@echo symlinked .vim
 
