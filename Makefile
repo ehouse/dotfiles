@@ -6,7 +6,7 @@ git:
 
 vim:
 	ln -sf $(HOME)/dotfiles/vim/vimrc $(HOME)/.vimrc
-	ln -sf $(HOME)/dotfiles/vim/vim $(HOME)/.vim
+	if [ -f $(HOME)/.vim ]; then ln -sf $(HOME)/dotfiles/vim/vim $(HOME)/.vim; fi
 	@mkdir -p $(HOME)/dotfiles/vim/bundle
 	@if [ ! -d $(HOME)/dotfiles/vim/vim/bundle/Vundle.vim ]; then git clone https://github.com/gmarik/Vundle.vim.git $(HOME)/dotfiles/vim/vim/bundle/Vundle.vim; fi
 	@vim +PluginInstall +qall

@@ -115,12 +115,16 @@ Plugin 'xolox/vim-misc'
 Plugin 'vim-scripts/loremipsum'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'junegunn/goyo.vim'
 call vundle#end()
 
 map <C-n> :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
 
 noremap <C-l> :noh<CR>
+
+noremap <C-p> :Goyo <CR>
+noremap <C-c> :setlocal spell! spelllang=en_us<CR>
 
 command WQ wq
 command Wq wq
