@@ -1,15 +1,29 @@
 SSH_KEY=$(HOME)/.ssh/id_rsa
 all: help
 
-dev-ansible:
-	@if [ $(shell command -v ansible &> /dev/null; echo $$?) -eq 1 ]; then echo "Error: Ansible required to run this task" && exit 1; fi
-	@ansible-playbook -K -i "localhost," -c local $(HOME)/dotfiles/ansible/dev-vm.yml
+### Macros for collections of tasks
 
-.PHONY: dev-ansible
+dev-vm: git vim ssh
+
+.PHONY: dev-vm
 
 dev: git vim zsh tmux ssh
 
 .PHONY: dev
+
+ansible-vm:
+	@if [ $(shell command -v ansible &> /dev/null; echo $$?) -eq 1 ]; then echo "Error: Ansible required to run this task" && exit 1; fi
+	@ansible-playbook -K -i "localhost," -c local $(HOME)/dotfiles/ansible/dev-vm.yml
+
+.PHONY: ansible-vm
+
+ansible-laptop:
+	@if [ $(shell command -v ansible &> /dev/null; echo $$?) -eq 1 ]; then echo "Error: Ansible required to run this task" && exit 1; fi
+	@ansible-playbook -K -i "localhost," -c local $(HOME)/dotfiles/ansible/dev-laptop.yml
+
+.PHONY: ansible-laptop
+
+### Individual config tasks
 
 git:
 	ln -sf $(HOME)/dotfiles/git/gitconfig $(HOME)/.gitconfig
@@ -63,8 +77,12 @@ mutt:
 help:
 	@echo
 	@echo "Macros"
-	@echo "  dev-vm :: Run Ansible Install Script"
+	@echo "  dev-vm :: Run through git, vim, and SSH setup"
 	@echo "  dev    :: Run through git, vim, zsh, tmux and SSH setup"
+	@echo
+	@echo "Ansible"
+	@echo "  ansible-vm     :: Run Ansible Install Script dev VM's"
+	@echo "  ansible-laptop :: Run Ansible Install Script for laptops"
 	@echo
 	@echo "Tasks"
 	@echo "  git    :: Run Ansible Install Script"
