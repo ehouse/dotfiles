@@ -19,7 +19,7 @@ wrpdf() {
 wrhtml(){
     gpp -H $1 | pandoc -f markdown -o $(basename $1 .md).html
 }
-export PATH=$PATH:$HOME/bin:/usr/local/bin
+ export PATH=$PATH:$HOME/bin:/usr/local/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -49,3 +49,9 @@ if [ $(uname -s) = "OpenBSD" ]; then
     PKG_PATH=http://mirrors.rit.edu/OpenBSD/$(uname -r)/packages/$(arch -s)/
     export PKG_PATH=https://stable.mtier.org/updates/$(uname -r)/$(arch -s):${PKG_PATH}
 fi
+
+# Amazon Sources
+export PATH=/apollo/env/SDETools/bin:/apollo/env/envImprovement/bin:$PATH
+alias bb=brazil-build
+
+export PATH=$HOME/.toolbox/bin:$PATH

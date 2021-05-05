@@ -7,8 +7,8 @@
     interactive = auto
     status = auto
 [user]
-	email = ehouse@palantir.com
-	name = Ethan House
+	email = thehouse@amazon.com
+	name = Evelyn House
 [core]
 	editor = vim
 [http]

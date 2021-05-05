@@ -110,8 +110,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 "Plugin 'nvie/vim-flake8'
 Plugin 'xolox/vim-misc'
-"Plugin 'xolox/vim-easytags'
-"Plugin 'majutsushi/tagbar'
 Plugin 'vim-scripts/loremipsum'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
@@ -119,7 +117,6 @@ Plugin 'junegunn/goyo.vim'
 call vundle#end()
 
 map <C-n> :NERDTreeToggle<CR>
-nmap <F8> :TagbarToggle<CR>
 
 noremap <C-l> :noh<CR>
 
@@ -133,3 +130,5 @@ command Q q
 
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown textwidth=80
 let g:vim_markdown_frontmatter = 1
+
+colorscheme distinguished
