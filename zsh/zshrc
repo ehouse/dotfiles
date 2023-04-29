@@ -54,9 +54,3 @@ if [ $(uname -s) = "OpenBSD" ]; then
     PKG_PATH=http://mirrors.rit.edu/OpenBSD/$(uname -r)/packages/$(arch -s)/
     export PKG_PATH=https://stable.mtier.org/updates/$(uname -r)/$(arch -s):${PKG_PATH}
 fi
-
-# Amazon Sources
-export PATH=/apollo/env/SDETools/bin:/apollo/env/envImprovement/bin:$PATH
-alias bb=brazil-build
-
-export PATH=$HOME/.toolbox/bin:$PATH
