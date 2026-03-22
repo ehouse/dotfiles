@@ -1,11 +1,10 @@
 ---
 - hosts: localhost
   vars:
-      yum_packages: [ '@Development tools', 'epel-release.noarch', 'vim', 'git', 'zsh', 'nmap', 'dstat', 'sysstat', 'htop', 'bind-utils', 'wget' ]
+      packages: [ '@Development tools', 'epel-release.noarch', 'vim', 'git', 'zsh', 'nmap', 'dstat', 'sysstat', 'htop', 'bind-utils', 'wget' ]
   tasks:
-     - name: Install Yum Packages
-       yum: name={{ yum_packages }} state=present
-       with_items: "{{ yum_packages }}"
+     - name: Install Packages
+       package: name={{ packages }} state=present
        when: ansible_os_family == "RedHat"
        become: true
 

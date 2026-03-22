@@ -39,8 +39,8 @@ set nowb
 " ================ Persistent Undo ==================
 " Keep undo history across sessions, by storing in file.
 " Only works all the time.
-if has('persistent_undo') && !isdirectory(expand('~').'/.vim/backups')
-  silent !mkdir ~/.vim/backups > /dev/null 2>&1
+if has('persistent_undo')
+  silent !mkdir -p ~/.vim/backups > /dev/null 2>&1
   set undodir=~/.vim/backups
   set undofile
 endif
@@ -67,7 +67,6 @@ set list listchars=tab:\ \ ,trail:·
 
 
 set nowrap       "Don't wrap lines
-set linebreak    "Wrap lines at convenient points
 
 " ================ Folds ============================
 
@@ -92,11 +91,13 @@ set wildignore+=*.png,*.jpg,*.gif
 
 " ================ Scrolling ========================
 
-set scrolloff=5         "Start scrolling when we're 8 lines away from margins
+set scrolloff=5         "Start scrolling when we're 5 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
 
 " ================ Search ===========================
+
+set clipboard=unnamed   " Use system clipboard for yank/paste
 
 set incsearch       " Find the next match as we type the search
 set hlsearch        " Highlight searches by default
@@ -110,14 +111,15 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
+Plugin 'preservim/nerdtree'
+Plugin 'preservim/nerdcommenter'
 "Plugin 'nvie/vim-flake8'
 Plugin 'xolox/vim-misc'
 Plugin 'vim-scripts/loremipsum'
 Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
+Plugin 'preservim/vim-markdown'
 Plugin 'junegunn/goyo.vim'
+Plugin 'Lokaltog/vim-distinguished'
 call vundle#end()
 
 map <C-n> :NERDTreeToggle<CR>

@@ -33,7 +33,7 @@ git:
 vim:
 	@if [ $(shell command -v vim &> /dev/null; echo $$?) -eq 1 ]; then echo "Error: Vim required to run this task" && exit 1; fi
 	ln -sf $(HOME)/dotfiles/vim/vimrc $(HOME)/.vimrc
-	if [ ! -f $(HOME)/.vim ]; then ln -sf $(HOME)/dotfiles/vim/vim $(HOME)/.vim; fi
+	if [ ! -d $(HOME)/.vim ]; then ln -sf $(HOME)/dotfiles/vim/vim $(HOME)/.vim; fi
 	@mkdir -p $(HOME)/dotfiles/vim/bundle
 	@if [ ! -d $(HOME)/dotfiles/vim/vim/bundle/Vundle.vim ]; then git clone https://github.com/gmarik/Vundle.vim.git $(HOME)/dotfiles/vim/vim/bundle/Vundle.vim; fi
 	vim +PluginInstall +qall
@@ -61,44 +61,35 @@ ssh:
 
 .PHONY: ssh
 
-i3:
-	@mkdir -p $(HOME)/.i3
-	ln -sf $(HOME)/dotfiles/i3/config $(HOME)/.i3/config
-	@echo symlinked .i3
-
-.PHONY: i3
-
 mutt:
 	ln -sf $(HOME)/dotfiles/mutt/muttrc $(HOME)/.muttrc
-	@echo symlinked .emacs
+	@echo symlinked .muttrc
 
 .PHONY: mutt
 
 help:
 	@echo
 	@echo "Macros"
-	@echo "  dev-vm :: Run through git, vim, and SSH setup"
-	@echo "  dev    :: Run through git, vim, zsh, tmux and SSH setup"
+	@echo "  dev-vm :: Run git, vim, and SSH setup"
+	@echo "  dev    :: Run git, vim, zsh, tmux, and SSH setup"
 	@echo
 	@echo "Ansible"
-	@echo "  ansible-vm     :: Run Ansible Install Script dev VM's"
-	@echo "  ansible-laptop :: Run Ansible Install Script for laptops"
+	@echo "  ansible-vm     :: Run Ansible install script for dev VMs"
+	@echo "  ansible-laptop :: Run Ansible install script for laptops"
 	@echo
 	@echo "Tasks"
-	@echo "  git    :: Run Ansible Install Script"
-	@echo "  vim    :: Run through git, vim, zsh, tmux and SSH setup"
-	@echo "  zsh    :: Run Ansible Install Script"
-	@echo "  tmux   :: Run through git, vim, zsh, tmux and SSH setup"
-	@echo "  ssh    :: Run through git, vim, zsh, tmux and SSH setup"
-	@echo "  i3     :: Run through git, vim, zsh, tmux and SSH setup"
-	@echo "  mutt   :: Run through git, vim, zsh, tmux and SSH setup"
+	@echo "  git  :: Symlink gitconfig"
+	@echo "  vim  :: Symlink vimrc, install Vundle and plugins"
+	@echo "  zsh  :: Symlink zshrc"
+	@echo "  tmux :: Symlink tmux.conf"
+	@echo "  ssh  :: Copy SSH config, generate key if missing"
+	@echo "  mutt :: Symlink muttrc"
 
 .PHONY: help
 
 clean:
 	rm -f $(HOME)/.tmux.conf
-	rm -rf $(HOME)/.i3
-	rm -f $(HOME)/.emacs
+	rm -f $(HOME)/.muttrc
 	rm -rf $(HOME)/.vim*
 	rm -rf $(HOME)/.oh-my-zsh*
 	rm -rf $(HOME)/.z*
@@ -106,3 +97,12 @@ clean:
 	rm -rf $(HOME)/dotfiles/vim/vim/bundle
 
 .PHONY: clean
+
+### Archived configs (not actively used)
+
+i3:
+	@mkdir -p $(HOME)/.i3
+	ln -sf $(HOME)/dotfiles/archived/i3/config $(HOME)/.i3/config
+	@echo symlinked .i3
+
+.PHONY: i3

@@ -11,5 +11,3 @@
 	name = Evelyn House
 [core]
 	editor = vim
-[http]
-	sslVerify = false
