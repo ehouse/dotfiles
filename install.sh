@@ -70,6 +70,20 @@ task_mutt() {
     symlink "$DOTFILES/mutt/muttrc" "$HOME/.muttrc"
 }
 
+task_brew() {
+    info "Setting up Homebrew..."
+    if [ "$(uname)" != "Darwin" ]; then
+        err "Homebrew is only supported on macOS — skipping"
+        return
+    fi
+    if command -v brew > /dev/null 2>&1; then
+        ok "Homebrew already installed"
+        return
+    fi
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    ok "Homebrew installed"
+}
+
 task_ansible_vm() {
     info "Running Ansible for VM..."
     require ansible
@@ -101,6 +115,7 @@ bundle_dev_vm() {
 }
 
 bundle_dev() {
+    task_brew
     task_git
     task_vim
     task_zsh
@@ -124,6 +139,7 @@ Ansible
   ansible-laptop  Run Ansible install playbook for laptops
 
 Tasks
+  brew            Install Homebrew (macOS only)
   git             Symlink gitconfig
   vim             Symlink vimrc, install Vundle and plugins
   zsh             Symlink zshrc
@@ -142,6 +158,7 @@ case "${1:-}" in
     dev)            bundle_dev ;;
     ansible-vm)     task_ansible_vm ;;
     ansible-laptop) task_ansible_laptop ;;
+    brew)           task_brew ;;
     git)            task_git ;;
     vim)            task_vim ;;
     zsh)            task_zsh ;;
