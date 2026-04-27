@@ -28,6 +28,8 @@ Setup
 | `tmux` | Symlink tmux.conf |
 | `ssh` | Copy SSH config, generate key if missing |
 | `mutt` | Symlink muttrc |
+| `isync` | Symlink mbsyncrc, create mail directories |
+| `vdirsyncer` | Symlink vdirsyncer config, create contact/calendar directories |
 
 **Ansible**
 

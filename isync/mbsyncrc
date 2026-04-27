@@ -1,0 +1,30 @@
+# Fastmail IMAP sync via mbsync
+# Requires an App Password from Fastmail:
+# Settings → Privacy & Security → App Passwords
+#
+# Store password in macOS Keychain (run once):
+#   security add-internet-password -s imap.fastmail.com -a ehouse@fastmail.com -w
+
+IMAPAccount fastmail
+Host imap.fastmail.com
+Port 993
+User ehouse@fastmail.com
+PassCmd "security find-internet-password -s imap.fastmail.com -a ehouse@fastmail.com -w"
+TLSType IMAPS
+AuthMechs LOGIN
+
+IMAPStore fastmail-remote
+Account fastmail
+
+MaildirStore fastmail-local
+SubFolders Verbatim
+Path ~/Mail/fastmail/
+Inbox ~/Mail/fastmail/Inbox
+
+Channel fastmail
+Far :fastmail-remote:
+Near :fastmail-local:
+Patterns *
+Create Both
+Expunge Both
+SyncState *

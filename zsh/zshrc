@@ -49,3 +49,4 @@ if command -v brew &>/dev/null; then
 fi
 
 set -o emacs
+export PATH="$HOME/.local/bin:$PATH"

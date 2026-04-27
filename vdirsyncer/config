@@ -1,0 +1,32 @@
+# vdirsyncer config for Fastmail
+# Requires an App Password from Fastmail:
+# Settings → Privacy & Security → App Passwords
+#
+# Store password in macOS Keychain (run once):
+#   security add-internet-password -s caldav.fastmail.com -a ehouse@fastmail.com -w
+#
+# First run:
+#   vdirsyncer discover
+#   vdirsyncer sync
+
+[general]
+status_path = "~/.vdirsyncer/status/"
+
+# ── Calendars ──────────────────────────────────────────────────────────────────
+
+[pair fastmail_calendars]
+a = "fastmail_calendars_local"
+b = "fastmail_calendars_remote"
+collections = ["from b"]
+conflict_resolution = "b wins"
+
+[storage fastmail_calendars_local]
+type = "filesystem"
+path = "~/.calendars/fastmail/"
+fileext = ".ics"
+
+[storage fastmail_calendars_remote]
+type = "caldav"
+url = "https://caldav.fastmail.com/"
+username = "ehouse@fastmail.com"
+password.fetch = ["command", "security", "find-internet-password", "-s", "caldav.fastmail.com", "-a", "ehouse@fastmail.com", "-w"]

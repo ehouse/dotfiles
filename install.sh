@@ -70,6 +70,27 @@ task_mutt() {
     symlink "$DOTFILES/mutt/muttrc" "$HOME/.muttrc"
 }
 
+task_isync() {
+    info "Setting up isync..."
+    symlink "$DOTFILES/isync/mbsyncrc" "$HOME/.mbsyncrc"
+    mkdir -p "$HOME/Mail/fastmail"
+}
+
+task_zed() {
+    info "Setting up Zed..."
+    mkdir -p "$HOME/.config/zed"
+    symlink "$DOTFILES/zed/settings.json" "$HOME/.config/zed/settings.json"
+}
+
+task_vdirsyncer() {
+    info "Setting up vdirsyncer..."
+    mkdir -p "$HOME/.vdirsyncer/status"
+    mkdir -p "$HOME/.contacts/fastmail"
+    mkdir -p "$HOME/.calendars/fastmail"
+    symlink "$DOTFILES/vdirsyncer/config" "$HOME/.vdirsyncer/config"
+    ok "run 'vdirsyncer discover' then 'vdirsyncer sync' to populate"
+}
+
 task_brew() {
     info "Setting up Homebrew..."
     if [ "$(uname)" != "Darwin" ]; then
@@ -100,7 +121,7 @@ task_ansible_laptop() {
 
 task_clean() {
     info "Cleaning up symlinks and bundles..."
-    rm -f "$HOME/.gitconfig" "$HOME/.vimrc" "$HOME/.zshrc" "$HOME/.tmux.conf" "$HOME/.muttrc"
+    rm -f "$HOME/.gitconfig" "$HOME/.vimrc" "$HOME/.zshrc" "$HOME/.tmux.conf" "$HOME/.muttrc" "$HOME/.config/zed/settings.json"
     rm -rf "$HOME/.vim"
     rm -rf "$DOTFILES/vim/vim/bundle"
     ok "cleaned"
@@ -121,6 +142,17 @@ bundle_dev() {
     task_zsh
     task_tmux
     task_ssh
+    task_zed
+}
+
+bundle_mail() {
+    info "Setting up mail..."
+    if command -v brew > /dev/null 2>&1; then
+        brew install isync vdirsyncer mutt
+    fi
+    task_mutt
+    task_isync
+    task_vdirsyncer
 }
 
 # ── Help & Dispatch ────────────────────────────────────────────────────────────
@@ -132,7 +164,8 @@ Usage: ./install.sh <command>
 
 Bundles
   dev-vm          Git, vim, and SSH setup
-  dev             Git, vim, zsh, tmux, and SSH setup
+  dev             Git, vim, zsh, tmux, SSH, and Zed setup
+  mail            Install and configure mutt, isync, and vdirsyncer
 
 Ansible
   ansible-vm      Run Ansible install playbook for dev VMs
@@ -145,7 +178,12 @@ Tasks
   zsh             Symlink zshrc
   tmux            Symlink tmux.conf
   ssh             Copy SSH config, generate key if missing
+  zed             Symlink Zed settings.json
+
+Mail
   mutt            Symlink muttrc
+  isync           Symlink mbsyncrc, create mail directories
+  vdirsyncer      Symlink vdirsyncer config, create contact/calendar directories
 
 Utilities
   clean           Remove all symlinks and vim bundles
@@ -156,6 +194,7 @@ EOF
 case "${1:-}" in
     dev-vm)         bundle_dev_vm ;;
     dev)            bundle_dev ;;
+    mail)           bundle_mail ;;
     ansible-vm)     task_ansible_vm ;;
     ansible-laptop) task_ansible_laptop ;;
     brew)           task_brew ;;
@@ -165,6 +204,9 @@ case "${1:-}" in
     tmux)           task_tmux ;;
     ssh)            task_ssh ;;
     mutt)           task_mutt ;;
+    isync)          task_isync ;;
+    vdirsyncer)     task_vdirsyncer ;;
+    zed)            task_zed ;;
     clean)          task_clean ;;
     *)              usage ;;
 esac
