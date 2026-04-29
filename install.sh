@@ -82,6 +82,12 @@ task_zed() {
     symlink "$DOTFILES/zed/settings.json" "$HOME/.config/zed/settings.json"
 }
 
+task_claude() {
+    info "Setting up Claude Code..."
+    mkdir -p "$HOME/.claude"
+    symlink "$DOTFILES/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+}
+
 task_vdirsyncer() {
     info "Setting up vdirsyncer..."
     mkdir -p "$HOME/.vdirsyncer/status"
@@ -121,7 +127,7 @@ task_ansible_laptop() {
 
 task_clean() {
     info "Cleaning up symlinks and bundles..."
-    rm -f "$HOME/.gitconfig" "$HOME/.vimrc" "$HOME/.zshrc" "$HOME/.tmux.conf" "$HOME/.muttrc" "$HOME/.config/zed/settings.json"
+    rm -f "$HOME/.gitconfig" "$HOME/.vimrc" "$HOME/.zshrc" "$HOME/.tmux.conf" "$HOME/.muttrc" "$HOME/.config/zed/settings.json" "$HOME/.claude/CLAUDE.md"
     rm -rf "$HOME/.vim"
     rm -rf "$DOTFILES/vim/vim/bundle"
     ok "cleaned"
@@ -143,6 +149,7 @@ bundle_dev() {
     task_tmux
     task_ssh
     task_zed
+    task_claude
 }
 
 bundle_mail() {
@@ -179,6 +186,7 @@ Tasks
   tmux            Symlink tmux.conf
   ssh             Copy SSH config, generate key if missing
   zed             Symlink Zed settings.json
+  claude          Symlink Claude Code CLAUDE.md
 
 Mail
   mutt            Symlink muttrc
@@ -207,6 +215,7 @@ case "${1:-}" in
     isync)          task_isync ;;
     vdirsyncer)     task_vdirsyncer ;;
     zed)            task_zed ;;
+    claude)         task_claude ;;
     clean)          task_clean ;;
     *)              usage ;;
 esac
